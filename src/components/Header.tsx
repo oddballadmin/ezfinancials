@@ -1,11 +1,14 @@
+import Profile from "./Profile";
+import "../component-styles/Header.css";
 const Header = () => {
 	return (
-		<>
-			<header>
-				<div className="brand">EZF</div>
-				
-			</header>
-		</>
+		<div className="Header">
+			<div className="brand">
+				<h1>EZfinancials</h1>
+				<small>Financial Dashboard</small>
+			</div>
+			<Profile />
+		</div>
 	);
 };
 

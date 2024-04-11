@@ -1,16 +1,13 @@
-import React from "react";
-
+import "../component-styles/Navigation.css";
 const Navigation = () => {
 	return (
-		<>
-			<nav>
-				<ul>
-					<li>Dashboard</li>
-					<li>Add Expense / Income</li>
-					<li>About</li>
-				</ul>
-			</nav>
-		</>
+		<nav className="Navigation">
+			<ul>
+				<li>Home</li>
+				<li>Edit Income / Expense</li>
+				<li>About</li>
+			</ul>
+		</nav>
 	);
 };
 

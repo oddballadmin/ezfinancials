@@ -1,0 +1,6 @@
+.Header {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	padding: 0.5rem 4rem;
+}

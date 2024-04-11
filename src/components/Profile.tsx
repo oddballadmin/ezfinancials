@@ -1,11 +1,11 @@
+import "../component-styles/Profile.css";
 const Profile = () => {
 	return (
-		<div className="profile">
-			<h2>Guest</h2>
-			<ul>
-				<li>Login</li>
-				<li>Logout</li>
-			</ul>
+		<div className="Profile">
+			<div className="profileGroup">
+				<h3>Guest</h3>
+				<button>Login</button>
+			</div>
 		</div>
 	);
 };
