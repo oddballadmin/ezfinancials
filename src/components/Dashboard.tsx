@@ -6,7 +6,7 @@ const Dashboard = () => {
 			<div className="NavSection">
 				<Navigation />
 			</div>
-			<section className="ContentSection">Content</section>
+			<section className="ContentSection"></section>
 		</div>
 	);
 };
