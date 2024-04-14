@@ -10,7 +10,7 @@ const Profile = () => {
 
 	return (
 		<div className="Profile">
-			<div className="profileGroup">
+			<div className="ProfileGroup">
 				<h3>Guest</h3>
 				<button
 					onClick={() => {
@@ -33,20 +33,22 @@ const Profile = () => {
 				>
 					SignUp
 				</button>
-			</div>
-			<Modal
-				isOpen={isLoginModalOpen}
-				onClose={() => setIsLoginModalOpen(false)}
-			>
-				<LogIn />
-			</Modal>
+				<Modal
+					isOpen={isLoginModalOpen}
+					onClose={() => setIsLoginModalOpen(false)}
+					title="Log In"
+				>
+					<LogIn />
+				</Modal>
 
-			<Modal
-				isOpen={isSignUpModalOpen}
-				onClose={() => setIsSignUpModalOpen(false)}
-			>
-				<SignUp />
-			</Modal>
+				<Modal
+					isOpen={isSignUpModalOpen}
+					onClose={() => setIsSignUpModalOpen(false)}
+					title="Sign Up"
+				>
+					<SignUp />
+				</Modal>
+			</div>
 		</div>
 	);
 };

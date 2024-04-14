@@ -3,9 +3,7 @@ import "../component-styles/Dashboard.css";
 const Dashboard = () => {
 	return (
 		<div className="Dashboard">
-			<div className="NavSection">
-				<Navigation />
-			</div>
+			<Navigation />
 			<section className="ContentSection"></section>
 		</div>
 	);
