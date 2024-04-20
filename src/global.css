@@ -13,7 +13,7 @@ html {
 	--secondary-blue-color: #39a1f4;
 	--secondary-gold-color: #f5a623;
 	--primary-txt-color: #f7f7f7;
-	--primnary-font-family: "Roboto", sans-serif;
+	--primary-font-family: "Roboto", sans-serif;
 }
 #root {
 	display: flex;
@@ -24,5 +24,5 @@ html {
 .container {
 	flex: 1;
 	color: var(--primary-txt-color);
-	font-family: var(--primnary-font-family);
+	font-family: var(--primary-font-family);
 }

@@ -48,7 +48,7 @@ const LogIn = () => {
 
 				<div className="ButtonGroup">
 					<button type="reset">Reset</button>
-					<button type="submit">Sign Up</button>
+					<button type="submit">Login</button>
 				</div>
 			</form>
 		</>

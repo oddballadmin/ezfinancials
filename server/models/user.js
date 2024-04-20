@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import expensesSchema from "./expenses.js";
+import incomesSchema from "./incomes.js";
 const { Schema } = mongoose;
 
 
@@ -10,7 +12,10 @@ const userSchema = new Schema({
     },
     password: {
         type: String,
-    }
+    },
+    expenses: [expensesSchema]
+    ,
+    incomes: [incomesSchema]
 
 })
 

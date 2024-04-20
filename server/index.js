@@ -2,7 +2,10 @@
 import express from 'express';
 import 'dotenv/config';
 import mongoose from 'mongoose';
-import router from './routes/authRoutes.js';
+import authRouter from './routes/authRoutes.js';
+import expenseRouter from './routes/expenseRoutes.js';
+import incomeRouter from './routes/incomeRoutes.js';
+
 import cookieParser from 'cookie-parser';
 
 const PORT = 8001;
@@ -21,7 +24,9 @@ app.use(express.urlencoded({ extended: false }));
 
 
 
-app.use('/', router);
+app.use('/', authRouter);
+app.use('/', expenseRouter);
+app.use('/', incomeRouter);
 
 
 app.listen(PORT, () => {

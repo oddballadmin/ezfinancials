@@ -1,17 +1,18 @@
 import "../component-styles/Profile.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Modal from "./Utils/Modal";
 import SignUp from "./SignUp";
 import LogIn from "./LogIn";
+import { UserContext } from "../context/UserContext";
 
 const Profile = () => {
 	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 	const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
-
+	const { user } = useContext(UserContext);
 	return (
 		<div className="Profile">
 			<div className="ProfileGroup">
-				<h3>Guest</h3>
+				<h3>{!!user && user.name}</h3>
 				<button
 					onClick={() => {
 						if (isSignUpModalOpen) return null;

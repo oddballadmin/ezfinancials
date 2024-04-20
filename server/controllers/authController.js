@@ -21,6 +21,7 @@ export const registerUser = async (req, res) => {
         const hashedPassword = await hashPassword(password)
 
         const user = await new User({
+
             name,
             email,
             password: hashedPassword
@@ -60,4 +61,22 @@ export const loginUser = async (req, res) => {
     catch (error) {
         console.log(error)
     }
+}
+
+export const getProfile = async (req, res) => {
+    const { token } = req.cookies;
+    if (token) {
+
+        jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
+            if (err) throw err;
+            res.json(user)
+        })
+    }
+
+    else {
+        res.json({ error: "Unauthorized" })
+    }
+
+
+
 }
