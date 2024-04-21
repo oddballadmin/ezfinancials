@@ -14,7 +14,7 @@ expenseRouter.use(cors({
 // API - Routes
 expenseRouter.get('/:id/expenses/', authenticateToken, getAllExpenses);
 expenseRouter.post('/:id/expenses/add', authenticateToken, addExpense);
-expenseRouter.delete('/:id/expenses/:id', authenticateToken, deleteExpense);
+expenseRouter.delete('/:id/expenses/delete/:id', authenticateToken, deleteExpense);
 expenseRouter.get('/:id/expenses/:id', authenticateToken, getSingleExpense);
 
 
