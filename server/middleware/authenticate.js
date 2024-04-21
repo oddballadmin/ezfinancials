@@ -7,7 +7,7 @@ const authenticateToken = (req, res, next) => {
 
     if (token == null) return res.sendStatus(401); // if no token, unauthorized
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
         if (err) return res.sendStatus(403); // if token is not valid, forbidden
         req.user = user;
         next();

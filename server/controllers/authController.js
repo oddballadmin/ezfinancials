@@ -80,3 +80,16 @@ export const getProfile = async (req, res) => {
 
 
 }
+
+export const getUser = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id)
+        if (!user) {
+            return res.json({ error: "User not found" })
+        }
+        res.json(user)
+    }
+    catch (error) {
+        console.log(error)
+    }
+}

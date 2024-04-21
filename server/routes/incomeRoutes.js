@@ -12,7 +12,7 @@ incomeRouter.use(cors({
 }));
 
 // API - Routes
-incomeRouter.get('/income', authenticateToken, getAllIncomes);
+incomeRouter.get('/:id/incomes', authenticateToken, getAllIncomes);
 
 
 export default incomeRouter;
