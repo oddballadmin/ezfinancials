@@ -48,10 +48,18 @@ export const loginUser = async (req, res) => {
 
         const match = await comparePassword(password, user.password)
         if (match) {
-            jwt.sign({ email: user.email, id: user._id, name: user.name }, process.env.JWT_SECRET, {}, (err, token) => {
-                if (err) throw err;
-                res.cookie('token', token).json(user)
-            })
+            const token = jwt.sign(
+                { email: user.email, _id: user._id, name: user.name },
+                process.env.JWT_SECRET,
+                { expiresIn: '24h' }  // You can configure the expiration as needed
+            );
+
+            res.cookie('token', token, {
+                httpOnly: false,
+                secure: false,  // Secure in production
+            });
+            return res.json({ message: "Logged in Successfully", token });
+
         }
         if (!match) {
             res.json({ error: "Invalid credentials" })
@@ -82,14 +90,32 @@ export const getProfile = async (req, res) => {
 }
 
 export const getUser = async (req, res) => {
+    const { token } = req.cookies;
+
+    if (!token) {
+        return res.status(401).json({ error: "No token provided" });
+    }
+
     try {
-        const user = await User.findById(req.params.id)
+        // Decoding the token
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        // Finding the user based on decoded data
+        const user = await User.findById(decoded._id); // Ensure your token includes the user's ID as 'id'
+
         if (!user) {
-            return res.json({ error: "User not found" })
+            return res.status(404).json({ error: "User not found" });
         }
-        res.json(user)
+
+        res.json({ name: user.name, email: user.email });
+    } catch (error) {
+        console.log('Error verifying token or fetching user:', error);
+        if (error.name === 'JsonWebTokenError') {
+            return res.status(403).json({ error: "Invalid token" });
+        } else if (error.name === 'TokenExpiredError') {
+            return res.status(403).json({ error: "Token has expired" });
+        } else {
+            return res.status(500).json({ error: "Server error" });
+        }
     }
-    catch (error) {
-        console.log(error)
-    }
-}
+};

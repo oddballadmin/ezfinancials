@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { getAllIncomes } from '../controllers/incomeController.js';
+import { addIncome, deleteIncome, getAllIncomes, getSingleIncome } from '../controllers/incomeController.js';
 import authenticateToken from '../middleware/authenticate.js';
 const incomeRouter = express.Router();
 
@@ -12,7 +12,10 @@ incomeRouter.use(cors({
 }));
 
 // API - Routes
-incomeRouter.get('/:id/incomes', authenticateToken, getAllIncomes);
+incomeRouter.get('/incomes', authenticateToken, getAllIncomes);
+incomeRouter.post('/income/add', authenticateToken, addIncome);
+incomeRouter.delete('/income/delete/:id', authenticateToken, deleteIncome);
+incomeRouter.get('/income/:id', authenticateToken, getSingleIncome);
 
 
 export default incomeRouter;

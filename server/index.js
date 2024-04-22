@@ -5,8 +5,10 @@ import mongoose from 'mongoose';
 import authRouter from './routes/authRoutes.js';
 import expenseRouter from './routes/expenseRoutes.js';
 import incomeRouter from './routes/incomeRoutes.js';
+import cors from 'cors';
 
 import cookieParser from 'cookie-parser';
+import { all } from 'axios';
 
 const PORT = 8001;
 const connString = `${process.env.MONGO_URL}`;
@@ -18,9 +20,18 @@ mongoose.connect(connString).then(() => {
 }).catch((err) => console.log(err));
 
 // Middleware
-app.use(express.json());
 app.use(cookieParser());
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+const corsOptions = {
+    origin: 'http://localhost:3000', // Adjust depending on your frontend URL
+    credentials: true,
+    
+    
+    // This is important for cookies to be sent and received
+};
+
+app.use(cors(corsOptions));
 
 
 
@@ -32,4 +43,5 @@ app.use('/', incomeRouter);
 app.listen(PORT, () => {
 
     console.log(`Server is running on port ${PORT}`);
+
 });

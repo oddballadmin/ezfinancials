@@ -1,9 +1,8 @@
 import Navigation from "./Navigation";
 import "../component-styles/Dashboard.css";
-import { useContext } from "react";
-import { UserContext } from "../context/UserContext";
 import CalculationModule from "./CalculationModule";
 import Module from "./Utils/Module";
+import Test from "./Test";
 
 const Dashboard = () => {
 	return (
@@ -12,6 +11,7 @@ const Dashboard = () => {
 			<div className="contentSection">
 				<Module>
 					<CalculationModule />
+					<Test />
 				</Module>
 			</div>
 		</div>

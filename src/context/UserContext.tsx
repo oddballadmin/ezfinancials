@@ -2,11 +2,23 @@ import axios from "axios";
 import type { ReactNode } from "react";
 
 import { createContext, useEffect, useState } from "react";
+// type ExpenseType = {
+// 	id: string;
+// 	title: string;
+// 	amount: number;
+// 	category: string;
+// };
+// type IncomeType = {
+// 	id: string;
+// 	title: string;
+// 	amount: number;
+// 	category: string;
+// };
+
 interface User {
+	id: string;
 	name: string;
 	email: string;
-	expenses: [];
-	incomes: [];
 }
 
 interface UserContextType {
@@ -25,24 +37,27 @@ export const UserContextProvider = ({ children }: { children: ReactNode }) => {
 	useEffect(() => {
 		const fetchUserData = async () => {
 			try {
-				// First API call to get the user ID or other required data
-				const profileResponse = await axios.get("/profile");
-				const userId = profileResponse.data.id; // Make sure 'id' exists in your response
-
-				// Second API call to get detailed user data
-				if (userId) {
-					const userDetailsResponse = await axios.get(`/${userId}`); // Adjust URL according to your API
-					setUser(userDetailsResponse.data);
-					console.log(userDetailsResponse.data);
+				const profileResponse = await axios.get("/profile", {
+					withCredentials: true,
+				});
+				if (profileResponse.data && profileResponse.data._id) {
+					const userData = {
+						...profileResponse.data,
+						id: profileResponse.data._id,
+					};
+					setUser(userData);
+					console.log("User data set in context:", userData);
 				} else {
-					console.error("User ID not found in profile data");
+					console.error("User data is incomplete:", profileResponse.data);
 				}
 			} catch (error) {
 				console.error("Error fetching user data:", error);
 			}
 		};
+
 		fetchUserData();
-	}, [setUser]);
+	}, []);
+
 	return (
 		<UserContext.Provider value={{ user, setUser }}>
 			{children}

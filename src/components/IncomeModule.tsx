@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import axios from "axios";
+axios.defaults.withCredentials = true;
+
 const IncomeModule = () => {
 	// const [income, setIncome] = useState<number>(0);
 	const [optionValue, setOptionValue] = useState<string>("add");
@@ -14,7 +17,7 @@ const IncomeModule = () => {
 
 	return (
 		<div className="moduleContainer">
-			<div className="amount">$2,444</div>
+			<div className="amount">$1245</div>
 			<hr />
 			<div className="header">
 				<h4 className="title">Income</h4>
