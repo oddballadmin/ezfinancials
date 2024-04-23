@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import { registerUser, loginUser, getProfile, getUser } from '../controllers/authController.js';
-import authenticateToken from '../middleware/authenticate.js';
 const authRouter = express.Router();
 
 // Middleware to allow cross-origin requests(CORS)

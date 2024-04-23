@@ -1,17 +1,12 @@
-import jwt from 'jsonwebtoken';
 import User from '../models/user.js';
 
 // Controllers/incomeController.js
 
 export const getAllIncomes = async (req, res) => {
-    const { token } = req.cookies;
-    if (!token) {
-        return res.status(401).send('Access Denied: No Token Provided!');
-    }
+
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
         // Assuming you store the user's ID in JWT and it's extracted in authenticateToken middleware
-        const user = await User.findById(decoded._id).select('incomes');
+        const user = await User.findById(req.user.id).select('incomes');
         if (!user) {
             return res.status(404).json({ error: "User not found" });
         }

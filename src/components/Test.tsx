@@ -1,11 +1,10 @@
-import React, { useContext, useEffect } from "react";
-import { UserContext } from "../context/UserContext";
+import { useEffect } from "react";
 import axios from "axios";
 
 const Test = () => {
 	useEffect(() => {
 		axios
-			.get("/incomes", { withCredentials: true })
+			.get("/incomes", { withCredentials: true, method: "GET" })
 			.then((response) => {
 				console.log("DATA: ", response.data);
 			})

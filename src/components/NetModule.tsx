@@ -1,5 +1,3 @@
-import React from "react";
-
 const NetModule = () => {
 	return (
 		<div className="moduleContainer">

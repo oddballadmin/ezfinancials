@@ -8,7 +8,6 @@ import incomeRouter from './routes/incomeRoutes.js';
 import cors from 'cors';
 
 import cookieParser from 'cookie-parser';
-import { all } from 'axios';
 
 const PORT = 8001;
 const connString = `${process.env.MONGO_URL}`;
@@ -24,10 +23,12 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 const corsOptions = {
-    origin: 'http://localhost:3000', // Adjust depending on your frontend URL
-    credentials: true,
-    
-    
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    origin: ['http://localhost:3000'],
+    credentials: true
+
+
+
     // This is important for cookies to be sent and received
 };
 

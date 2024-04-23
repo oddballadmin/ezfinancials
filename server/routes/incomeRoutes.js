@@ -7,7 +7,7 @@ const incomeRouter = express.Router();
 // Middleware to allow cross-origin requests(CORS)
 incomeRouter.use(cors({
     origin: 'http://localhost:3000',
-    credentials: true
+    credentials: true,
 
 }));
 

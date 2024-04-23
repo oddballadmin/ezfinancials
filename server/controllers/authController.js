@@ -50,13 +50,12 @@ export const loginUser = async (req, res) => {
         if (match) {
             const token = jwt.sign(
                 { email: user.email, _id: user._id, name: user.name },
-                process.env.JWT_SECRET,
-                { expiresIn: '24h' }  // You can configure the expiration as needed
+                process.env.JWT_SECRET  // You can configure the expiration as needed
             );
 
             res.cookie('token', token, {
-                httpOnly: false,
-                secure: false,  // Secure in production
+                httpOnly: true,
+                // Secure in production
             });
             return res.json({ message: "Logged in Successfully", token });
 
