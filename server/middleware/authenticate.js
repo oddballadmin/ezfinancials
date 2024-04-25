@@ -1,33 +1,29 @@
+import asyncHandler from 'express-async-handler';
 import jwt from 'jsonwebtoken';
+import User from '../models/user.js'
 
-const authenticateToken = (req, res, next) => {
-    // Extract the authorization header
-    const authHeader = req.headers['authorization'];
+const protect = asyncHandler(async (req, res, next) => {
+    let token;
 
-    // Check if the authorization header exists and starts with "Bearer"
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        return res.status(401).json({ error: 'Unauthorized: No token provided' });
-    }
-
-    // Extract the token from the authorization header
-    const token = authHeader.split(' ')[1];
-
-    // Verify the token
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-        if (err) {
-            console.error('JWT Verification Error:', err);
+    token = req.cookies;
+    token = token.token;
+    if (token) {
+        try {
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            req.user = await User.findById(decoded._id);
+            next();
+        }
+        catch (error) {
+            console.error('JWT Verification Error:', error);
+            console.log(token);
             return res.status(403).json({ error: 'Token is invalid or expired' });
         }
+    }
+    else {
+        return res.status(401).json({ error: 'Unauthorized: No token provided' });
 
-        // Log the decoded token for debugging purposes
-        console.log('Decoded JWT:', decoded);
+    }
 
-        // Attach the decoded token to the request object
-        req.user = decoded;
 
-        // Proceed to the next middleware or route handler
-        next();
-    });
-};
-
-export default authenticateToken;
+})
+export default protect;

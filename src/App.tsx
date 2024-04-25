@@ -5,10 +5,9 @@ import axios from "axios";
 import { Toaster } from "react-hot-toast";
 import { UserContextProvider } from "./context/UserContext";
 
-axios.defaults.baseURL = "http://localhost:8001";
-axios.defaults.withCredentials = true;
-
 const App = () => {
+	axios.defaults.baseURL = "http://localhost:8001";
+	axios.defaults.withCredentials = true;
 	return (
 		<>
 			<div className="container">

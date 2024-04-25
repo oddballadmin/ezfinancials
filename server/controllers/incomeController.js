@@ -1,5 +1,4 @@
 import User from '../models/user.js';
-
 // Controllers/incomeController.js
 
 export const getAllIncomes = async (req, res) => {
@@ -14,7 +13,7 @@ export const getAllIncomes = async (req, res) => {
         if (user.incomes.length === 0) {
             return res.status(404).json({ error: "No incomes found for this user" });
         }
-        res.json({ incomes: user });
+        res.json(user.incomes);
     } catch (error) {
         console.error("Failed to fetch incomes:", error);
         res.status(500).json({ error: "Server error" });

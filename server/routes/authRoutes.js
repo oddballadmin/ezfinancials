@@ -5,7 +5,7 @@ const authRouter = express.Router();
 
 // Middleware to allow cross-origin requests(CORS)
 authRouter.use(cors({
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', 'http://localhost:8001'],
     credentials: true
 
 }));

@@ -7,7 +7,6 @@ import expenseRouter from './routes/expenseRoutes.js';
 import incomeRouter from './routes/incomeRoutes.js';
 import cors from 'cors';
 
-import cookieParser from 'cookie-parser';
 
 const PORT = 8001;
 const connString = `${process.env.MONGO_URL}`;
@@ -18,22 +17,26 @@ mongoose.connect(connString).then(() => {
     console.log('Connected to the database');
 }).catch((err) => console.log(err));
 
+
 // Middleware
+import cookieParser from 'cookie-parser';
+
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+
 const corsOptions = {
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    origin: ['http://localhost:3000'],
-    credentials: true
+    origin: 'http://localhost:3000',
+    credentials: true,
 
 
 
     // This is important for cookies to be sent and received
 };
-
 app.use(cors(corsOptions));
-
+app.options('*', cors(corsOptions));
 
 
 app.use('/', authRouter);

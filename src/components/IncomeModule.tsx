@@ -1,10 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { set } from "mongoose";
 axios.defaults.withCredentials = true;
 
+type IncomeType = {
+	_id: number;
+	name: string;
+	createdOn: string;
+	amount: number;
+};
+
 const IncomeModule = () => {
-	// const [income, setIncome] = useState<number>(0);
+	const [incomes, setIncomes] = useState<IncomeType[]>([
+		{ _id: 0, name: "", createdOn: "", amount: 0 },
+	]);
 	const [optionValue, setOptionValue] = useState<string>("add");
+	const fetchData = async () => {
+		try {
+			const res = await axios.get("/api/income", { withCredentials: true });
+			console.log(res.data);
+			setIncomes(res.data); // Change the type to IncomeType[]
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	useEffect(() => {
+		fetchData();
+	}, []);
 
 	const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		e.preventDefault();
@@ -21,7 +44,14 @@ const IncomeModule = () => {
 			<hr />
 			<div className="header">
 				<h4 className="title">Income</h4>
-
+				<div className="income-container">
+					{incomes.map((income) => (
+						<div key={income._id} className="income">
+							<div className="income-name">{income.name}</div>
+							<div className="income-amount">${income.amount}</div>
+						</div>
+					))}
+				</div>
 				<form className="moduleOptions" onSubmit={onSubmit}>
 					<select title="income" onChange={onChange} value={optionValue}>
 						<option value="add">Add</option>
