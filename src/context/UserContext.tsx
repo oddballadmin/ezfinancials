@@ -19,6 +19,7 @@ interface User {
 	id: string;
 	name: string;
 	email: string;
+	_id: string;
 }
 
 interface UserContextType {
@@ -33,31 +34,31 @@ export const UserContext = createContext<UserContextType>({
 
 export const UserContextProvider = ({ children }: { children: ReactNode }) => {
 	const [user, setUser] = useState<User | null>(null);
-
-	useEffect(() => {
-		const fetchUserData = async () => {
-			try {
-				const profileResponse = await axios.get("/profile", {
-					withCredentials: true,
-				});
-				if (profileResponse.data && profileResponse.data._id) {
-					const userData = {
-						...profileResponse.data,
-						id: profileResponse.data._id,
-					};
-					setUser(userData);
-					console.log("User data set in context:", userData);
-				} else {
-					console.error("User data is incomplete:", profileResponse.data);
-				}
-			} catch (error) {
-				console.error("Error fetching user data:", error);
+	// const changeUser = (newUser: User) => {
+	// 	setUser((prevUser) => ({ ...prevUser, ...newUser }));
+	// };
+	const fetchUserData = async () => {
+		try {
+			const profileResponse = await axios.get("/profile", {
+				withCredentials: true,
+			});
+			if (profileResponse.data && profileResponse.data._id) {
+				const userData = {
+					...profileResponse.data,
+					id: profileResponse.data._id,
+				};
+				setUser((prevUser) => ({ ...prevUser, ...userData }));
+				console.log("User data set in context:", userData);
+			} else {
+				console.error("User data is incomplete:", profileResponse.data);
 			}
-		};
-
+		} catch (error) {
+			console.error("Error fetching user data:", error);
+		}
+	};
+	useEffect(() => {
 		fetchUserData();
-	}, []);
-
+	}, [setUser]);
 	return (
 		<UserContext.Provider value={{ user, setUser }}>
 			{children}

@@ -8,7 +8,7 @@ import { UserContext } from "../context/UserContext";
 const Profile = () => {
 	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 	const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
-	const { user } = useContext(UserContext);
+	const { user, setUser } = useContext(UserContext);
 	return (
 		<div className="Profile">
 			<div className="ProfileGroup">

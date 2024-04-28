@@ -53,9 +53,9 @@ const IncomeModule = () => {
 				</div>
 				<form className="moduleOptions" onSubmit={onSubmit}>
 					<select title="income" onChange={onChange} value={optionValue}>
+						<option value="view">View All</option>
 						<option value="add">Add</option>
 						<option value="edit">Edit</option>
-						<option value="rename">Rename</option>
 						<option value="delete">Delete</option>
 					</select>
 					<button type="submit">Go</button>
