@@ -4,6 +4,8 @@ import Header from "./components/Header";
 import axios from "axios";
 import { Toaster } from "react-hot-toast";
 import { UserContextProvider } from "./context/UserContext";
+import { IncomeProvider } from "./context/IncomeContext";
+import { ExpenseProvider } from "./context/ExpenseContext";
 
 const App = () => {
 	axios.defaults.baseURL = "http://localhost:8001";
@@ -12,9 +14,13 @@ const App = () => {
 		<>
 			<div className="container">
 				<UserContextProvider>
-					<Header />
-					<Toaster position="top-right" toastOptions={{ duration: 2000 }} />
-					<Dashboard />
+					<IncomeProvider>
+						<ExpenseProvider>
+							<Header />
+							<Toaster position="top-right" toastOptions={{ duration: 2000 }} />
+							<Dashboard />
+						</ExpenseProvider>
+					</IncomeProvider>
 				</UserContextProvider>
 			</div>
 		</>

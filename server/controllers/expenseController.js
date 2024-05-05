@@ -3,7 +3,7 @@ import User from '../models/user.js'
 
 export const getAllExpenses = async (req, res) => {
     try {
-        const user = await User.findById(req.user.id);
+        const user = await User.findById(req.user.id).select('expenses');
         if (!user) {
             return res.json({ error: "User not found" })
         }
@@ -18,6 +18,9 @@ export const addExpense = async (req, res) => {
     try {
         const { name, amount, category } = req.body;
         const user = await User.findById(req.user.id);
+        const userExpenseList = user.expenses;
+
+
         if (!user) {
             return res.status(404).json({ error: "User not found" });
         }
@@ -29,7 +32,8 @@ export const addExpense = async (req, res) => {
             amount,
             category
         };
-        user.expenses.push(newExpense);
+        userExpenseList.push(newExpense);
+        user.expenses = userExpenseList
         await user.save();  // Save the user document with the new expense
         return res.status(201).json(newExpense);  // Send back the added expense as confirmation
     }

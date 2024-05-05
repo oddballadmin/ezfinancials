@@ -1,0 +1,9 @@
+.ModuleOptions {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1.5rem;
+	& > button {
+		padding: 0.25rem 1rem;
+		white-space: nowrap;
+	}
+}

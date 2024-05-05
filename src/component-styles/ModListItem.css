@@ -1,0 +1,14 @@
+.ModListItem {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	& > .info {
+		display: flex;
+		flex-flow: row nowrap;
+	}
+	& > .actionButtons {
+		display: flex;
+		flex-flow: row nowrap;
+		gap: 1rem;
+	}
+}

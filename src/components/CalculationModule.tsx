@@ -9,6 +9,7 @@ const CalculationModule = () => {
 			<ExpenseModule />
 			<NetModule />
 		</div>
+		
 	);
 };
 

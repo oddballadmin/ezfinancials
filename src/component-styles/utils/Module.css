@@ -5,7 +5,7 @@
 	box-shadow: 2px 7px 15px 0 rgba(0, 0, 0, 0.3);
 	font-family: var(--primary-font-family);
 	margin: 5rem 0;
-	flex-flow: row wrap;
+	flex-flow: column wrap;
 	border-radius: 0.5rem;
-	gap: 4rem;
+	gap: 6rem;
 }

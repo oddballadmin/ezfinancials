@@ -4,8 +4,9 @@ import CalculationModule from "./CalculationModule";
 import Module from "./Utils/Module";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
+import { ModuleProvider } from "../context/OptionsContext";
 const Dashboard = () => {
-	const { user, setUser } = useContext(UserContext);
+	const { user } = useContext(UserContext);
 	const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
 	useEffect(() => {
@@ -30,7 +31,9 @@ const Dashboard = () => {
 			<Navigation />
 			<div className="contentSection">
 				<Module>
-					<CalculationModule />
+					<ModuleProvider>
+						<CalculationModule />
+					</ModuleProvider>
 				</Module>
 			</div>
 		</div>

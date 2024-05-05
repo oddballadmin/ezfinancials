@@ -1,7 +1,28 @@
+import ExpenseContext from "../context/ExpenseContext";
+import IncomeContext from "../context/IncomeContext";
+import { useContext, useMemo, useState } from "react";
+import { convertToUsd } from "../helpers";
+
 const NetModule = () => {
+	const { income } = useContext(IncomeContext);
+	const { expense } = useContext(ExpenseContext);
+	const [netIncome, setNetIncome] = useState<number>(0);
+	const calculateNetIncome = () => {
+		if (!income || !expense) return;
+		const incomeTotal = income.reduce((acc, income) => acc + income.amount, 0);
+		const expenseTotal = expense.reduce(
+			(acc, expense) => acc + expense.amount,
+			0
+		);
+		setNetIncome(incomeTotal - expenseTotal);
+	};
+
+	useMemo(() => {
+		calculateNetIncome();
+	}, [income, expense]);
 	return (
 		<div className="moduleContainer">
-			<div className="amount">$1,444</div>
+			<div className="amount">{convertToUsd(netIncome)}</div>
 			<hr />
 			<div className="header">
 				<h4 className="title">Net Income</h4>
