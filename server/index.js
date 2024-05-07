@@ -6,6 +6,7 @@ import authRouter from './routes/authRoutes.js';
 import expenseRouter from './routes/expenseRoutes.js';
 import incomeRouter from './routes/incomeRoutes.js';
 import cors from 'cors';
+import { orginOptions } from './middleware/orgin.js';
 
 
 const PORT = 8001;
@@ -26,11 +27,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const orginOptions = [
-    "http://localhost:3000",
-    "https://ezfinancials-s6e4-denr7jmm1-georges-projects-8c72f407.vercel.app",
-    "https://ezfinancials-s6e4.vercel.app"
-]
+
 const corsOptions = {
     origin: orginOptions,
     credentials: true,

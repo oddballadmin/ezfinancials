@@ -1,12 +1,14 @@
 import express from 'express';
 import cors from 'cors';
 import protect from '../middleware/authenticate.js';
+import { orginOptions } from '../middleware/orgin.js';
+
 import { addExpense, deleteExpense, getAllExpenses, getSingleExpense, updateExpense } from '../controllers/expenseController.js';
 const expenseRouter = express.Router();
 
 // Middleware to allow cross-origin requests(CORS)
 expenseRouter.use(cors({
-    origin: 'http://localhost:3000',
+    origin: orginOptions,
     credentials: true,
 
 }));
