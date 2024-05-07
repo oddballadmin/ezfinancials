@@ -1,4 +1,3 @@
-import React from "react";
 import "../component-styles/ModListItem.css";
 import { convertToUsd } from "../helpers";
 // import IncomeContext from "../context/IncomeContext";

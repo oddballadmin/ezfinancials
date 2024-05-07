@@ -8,7 +8,8 @@ import { IncomeProvider } from "./context/IncomeContext";
 import { ExpenseProvider } from "./context/ExpenseContext";
 
 const App = () => {
-	axios.defaults.baseURL = "http://localhost:8001";
+	axios.defaults.baseURL =
+		"http://localhost:8001" || "https://ezfinancials.vercel.app/";
 	axios.defaults.withCredentials = true;
 	return (
 		<>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import IncomeContext from "../context/IncomeContext";
 import ExpenseContext from "../context/ExpenseContext";
 import ModListItem from "./ModListItem";

@@ -8,11 +8,13 @@ import { UserContext } from "../context/UserContext";
 const Profile = () => {
 	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 	const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
-	const { user, setUser } = useContext(UserContext);
+	const { user } = useContext(UserContext);
 	return (
 		<div className="Profile">
 			<div className="ProfileGroup">
-				<h3>{!!user && user.name}</h3>
+				<h3>
+					<h3>{user ? user.name : "Guest"}</h3>
+				</h3>
 				<button
 					onClick={() => {
 						if (isSignUpModalOpen) return null;
