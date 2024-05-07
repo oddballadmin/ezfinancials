@@ -26,9 +26,13 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-
+const orginOptions = [
+    "http://localhost:3000",
+    "https://ezfinancials-s6e4-denr7jmm1-georges-projects-8c72f407.vercel.app",
+    "https://ezfinancials-s6e4.vercel.app"
+]
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: orginOptions,
     credentials: true,
 
 
