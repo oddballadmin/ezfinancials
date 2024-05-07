@@ -2,10 +2,35 @@
 	display: flex;
 	& > .ProfileGroup {
 		display: flex;
-		flex-flow: row wrap;
+		flex-flow: row nowrap;
 		gap: 2rem;
 		justify-content: center;
 		align-items: center;
 		position: relative;
+		& > button {
+			padding: 0.5rem 1rem;
+			border-radius: 5px;
+			border: none;
+		}
+		h3 {
+			color: var(--primary-txt-color);
+		}
+	}
+}
+@media screen and (max-width: 768px) {
+	.Profile {
+		& > .ProfileGroup {
+			display: flex;
+			flex-flow: column nowrap;
+			gap: 2rem;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			& > button {
+				padding: 0.5rem 1rem;
+				border-radius: 5px;
+				border: none;
+			}
+		}
 	}
 }

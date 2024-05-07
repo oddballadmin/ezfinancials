@@ -1,20 +1,18 @@
 import { useEffect, useMemo, useState, useContext } from "react";
-import axios from "axios";
 import ModuleOptions from "./ModuleOptions";
 import { useModuleContext } from "../context/OptionsContext";
 import IncomeContext from "../context/IncomeContext";
-import { convertToUsd } from "../helpers";
+import { convertToUsd, getIncome } from "../helpers";
 import ModuleList from "./ModuleList";
 import ModuleListItemGroup from "./ModuleListItemGroup";
+import AddIncomeMenu from "./AddIncomeMenu";
 const IncomeModule = () => {
 	const { income, setIncome } = useContext(IncomeContext);
 	const [incomeTotal, setIncomeTotal] = useState<number>(0);
 
 	const fetchData = async () => {
 		try {
-			const res = await axios.get("/api/income", { withCredentials: true });
-			console.log(res.data);
-			setIncome(res.data);
+			setIncome(await getIncome());
 			// Change the type to IncomeType[]
 		} catch (error) {
 			console.log(error);
@@ -46,6 +44,7 @@ const IncomeModule = () => {
 				<ModuleOptions mTarget="Income" />
 			</div>
 			<div className="content">
+				{context?.showAddIncomeMenu && <h4>Income</h4> && <AddIncomeMenu />}
 				{context?.showAllIncome && income && (
 					<ModuleList>
 						<ModuleListItemGroup modData="Income" />

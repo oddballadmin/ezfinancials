@@ -7,11 +7,12 @@ html {
 	box-sizing: border-box;
 }
 :root {
-	--primary-bg-color: #50327d;
+	--primary-bg-color: #5b3b8a;
 	--primary-2-bg-color: #1dc9b7;
 	--secondary-pink-color: #fd3995;
 	--secondary-blue-color: #39a1f4;
 	--secondary-gold-color: #f5a623;
+	--primary-black-color: #070707;
 	--primary-txt-color: #f7f7f7;
 	--primary-font-family: "Roboto", sans-serif;
 }

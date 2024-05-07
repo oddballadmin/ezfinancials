@@ -31,3 +31,32 @@
 		}
 	}
 }
+@media screen and (max-width: 375px) {
+	.Modal {
+		& > .ModalWrapper {
+			display: flex;
+			flex-flow: column wrap;
+			width: 100%;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+
+			.ModalHeader {
+				display: flex;
+				background-color: #f4f4f4;
+				padding: 1rem 2rem;
+				border-bottom: 1px solid #ccc;
+				justify-content: space-between;
+
+				align-items: center;
+				& > h3 {
+					display: block;
+					z-index: 5;
+				}
+				& > .CloseButton {
+					all: unset;
+					color: #f00;
+					font-size: 2rem;
+				}
+			}
+		}
+	}
+}

@@ -21,3 +21,25 @@
 		}
 	}
 }
+@media screen and (max-width: 768px) {
+	.Header {
+		padding-inline: 0.5rem;
+		flex-flow: row nowrap;
+
+		& > .brand {
+			display: flex;
+			flex-flow: column nowrap;
+			line-height: 0.95;
+			color: var(--primary-txt-color);
+			gap: 0.5rem;
+			& > h1 {
+				font-weight: 700;
+				font-size: 1.75rem;
+			}
+			& > small {
+				font-size: 1.15rem;
+				font-weight: 300;
+			}
+		}
+	}
+}

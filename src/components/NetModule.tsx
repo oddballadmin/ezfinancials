@@ -17,12 +17,15 @@ const NetModule = () => {
 		setNetIncome(incomeTotal - expenseTotal);
 	};
 
+	const netIncomeColor = netIncome >= 0 ? "green" : "red";
 	useMemo(() => {
 		calculateNetIncome();
 	}, [income, expense]);
 	return (
 		<div className="moduleContainer">
-			<div className="amount">{convertToUsd(netIncome)}</div>
+			<div className="amount" style={{ color: netIncomeColor }}>
+				{convertToUsd(netIncome)}
+			</div>
 			<hr />
 			<div className="header">
 				<h4 className="title">Net Income</h4>

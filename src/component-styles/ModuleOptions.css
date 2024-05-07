@@ -1,9 +1,14 @@
 .ModuleOptions {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(3, 1fr);
 	gap: 1.5rem;
 	& > button {
 		padding: 0.25rem 1rem;
 		white-space: nowrap;
+		border-radius: 5px;
+		border: 1px solid var(--primary-black-color);
+		color: var(--primary-txt-color);
+		padding: 0.5rem 1rem;
+		background-color: var(--secondary-blue-color);
 	}
 }

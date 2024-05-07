@@ -57,8 +57,8 @@ const LogIn = () => {
 	};
 
 	return (
-		<>
-			<form className="LogIn" onSubmit={logInUser}>
+		<div className="LogIn">
+			<form onSubmit={logInUser}>
 				<div className="InputGroup">
 					<label htmlFor="email">Email</label>
 					<input
@@ -85,7 +85,7 @@ const LogIn = () => {
 					<button type="submit">Login</button>
 				</div>
 			</form>
-		</>
+		</div>
 	);
 };
 

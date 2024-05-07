@@ -1,10 +1,17 @@
 .Dashboard {
 	display: grid;
-	grid-template-columns: 20rem 1fr;
+	grid-template-columns: 1fr;
 	min-height: 100%;
 	color: #000;
 
 	& > .contentSection {
 		padding: 0 2rem;
+	}
+}
+@media screen and (max-width: 768px) {
+	.Dashboard {
+		& > .contentSection {
+			padding: 0;
+		}
 	}
 }

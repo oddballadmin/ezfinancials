@@ -91,3 +91,30 @@ export const getSingleExpense = async (req, res) => {
     }
 }
 
+export const updateExpense = async (req, res) => {
+    const { id } = req.params;
+    const updates = req.body; // This contains only the fields that need to be updated
+
+    try {
+        const user = await User.findById(req.user._id);
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        const expense = user.expenses.id(id);
+        if (!expense) {
+            return res.status(404).json({ error: "Expense item not found" });
+        }
+
+        // Update only the fields that are provided in the request body
+        if (updates.name) expense.name = updates.name;
+        if (updates.amount) expense.amount = updates.amount;
+        if (updates.category) expense.category = updates.category;
+
+        await user.save(); // Save the updated user document
+        res.status(200).json(expense);
+    } catch (error) {
+        console.error("Failed to update expense:", error);
+        res.status(500).json({ error: "Server error" });
+    }
+};

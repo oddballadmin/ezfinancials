@@ -1,4 +1,3 @@
-import Navigation from "./Navigation";
 import "../component-styles/Dashboard.css";
 import CalculationModule from "./CalculationModule";
 import Module from "./Utils/Module";
@@ -24,11 +23,9 @@ const Dashboard = () => {
 			</div>
 		);
 	}
-	console.log("Dashboard Render: User is", user);
 
 	return (
 		<div className="Dashboard">
-			<Navigation />
 			<div className="contentSection">
 				<Module>
 					<ModuleProvider>

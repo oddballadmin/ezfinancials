@@ -1,0 +1,32 @@
+.AddMenu {
+	display: flex;
+	flex-flow: column nowrap;
+	padding-top: 1rem;
+	gap: 1rem;
+	& > form {
+		display: flex;
+		flex-flow: column nowrap;
+		gap: 1rem;
+		& > .formItem {
+			display: flex;
+			align-items: center;
+			flex-flow: row nowrap;
+			& > label {
+				padding-right: 2rem;
+			}
+			& > input {
+				border-radius: 5px;
+				padding: 0.25rem;
+				flex: 1;
+			}
+		}
+		& > button {
+			padding: 0.5rem;
+			border-radius: 5px;
+			background-color: var(--primary-bg-color);
+			color: var(--primary-txt-color);
+			font-size: 1rem;
+			margin-bottom: 1rem;
+		}
+	}
+}

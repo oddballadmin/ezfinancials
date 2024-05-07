@@ -1,43 +1,86 @@
 .SignUp {
-	display: flex;
-	flex-flow: column nowrap;
-	padding: 1.5rem 1rem 0;
-	gap: 1rem;
-	& > .InputGroup {
+	& > form {
 		display: flex;
+		flex-flow: column wrap;
+		padding: 1.5rem 1rem 0;
 		gap: 1rem;
-		padding: 0 1rem;
-		align-items: center;
-		& > label {
-			display: block;
-			font-size: 1.2rem;
-			font-weight: 400;
-			padding-right: 2rem;
-		}
-		& > input {
-			flex: 1;
-			border-radius: 5px;
+		& > .InputGroup {
+			display: flex;
+			gap: 1rem;
 			padding: 0 1rem;
-			height: 2.5rem;
+			& > label {
+				display: block;
+				font-size: 1.2rem;
+				font-weight: 400;
+				padding-right: 2rem;
+			}
+			& > input {
+				flex: 1;
+				border-radius: 5px;
+				padding: 0.25rem 0.5rem;
+			}
+			& > input::placeholder {
+				font-weight: 100;
+			}
 		}
-		& > input::placeholder {
-			font-weight: 100;
+		.ButtonGroup {
+			display: flex;
+			width: 100%;
+			justify-content: center;
+			gap: 2rem;
+			padding: 2rem 0;
+			& > button {
+				all: unset;
+				padding: 0.5rem 1rem;
+				border-radius: 5px;
+			}
+			& > button[type="submit"] {
+				background-color: var(--secondary-blue-color);
+				color: var(--primary-txt-color);
+			}
 		}
 	}
-	.ButtonGroup {
+}
+@media screen and (max-width: 375px) {
+	.SignUp {
 		display: flex;
-		width: 100%;
-		justify-content: center;
-		gap: 2rem;
-		padding: 2rem 0;
-		& > button {
-			all: unset;
-			padding: 0.5rem 1rem;
-			border-radius: 5px;
-		}
-		& > button[type="submit"] {
-			background-color: var(--secondary-blue-color);
-			color: var(--primary-txt-color);
+		flex-flow: column wrap;
+		gap: 1rem;
+		& > form {
+			& > .InputGroup {
+				display: flex;
+				flex-flow: column nowrap;
+				gap: 1rem;
+				padding: 0 1rem;
+
+				& > label {
+					display: block;
+					font-size: 1.2rem;
+					font-weight: 400;
+				}
+				& > input {
+					border-radius: 5px;
+				}
+				& > input::placeholder {
+					font-weight: 100;
+				}
+			}
+			.ButtonGroup {
+				display: flex;
+				width: 100%;
+				justify-content: center;
+				gap: 2rem;
+				padding: 2rem 0;
+				& > button {
+					all: unset;
+					padding: 0.5rem 1rem;
+					border-radius: 5px;
+				}
+				& > button[type="submit"] {
+					background-color: var(--secondary-blue-color);
+					color: var(--primary-txt-color);
+				}
+			}
 		}
 	}
 }
