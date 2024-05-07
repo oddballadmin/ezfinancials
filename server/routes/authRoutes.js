@@ -6,8 +6,7 @@ const authRouter = express.Router();
 // Middleware to allow cross-origin requests(CORS)
 authRouter.use(cors({
     origin: "https://ezfinancials-s6e4.vercel.app",
-
-    credentials: true
+    // Secure in production
 
 }));
 
