@@ -9,8 +9,8 @@ import { ExpenseProvider } from "./context/ExpenseContext";
 
 const App = () => {
 	axios.defaults.baseURL =
-		"http://localhost:8001" ||
-		"https://ezfinancials-s6e4-denr7jmm1-georges-projects-8c72f407.vercel.app" ||
+		// "http://localhost:8001" ||
+		// "https://ezfinancials-s6e4-denr7jmm1-georges-projects-8c72f407.vercel.app" ||
 		"https://ezfinancials-s6e4.vercel.app";
 	axios.defaults.withCredentials = true;
 	return (
