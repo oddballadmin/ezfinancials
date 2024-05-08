@@ -1,6 +1,6 @@
 [[redirects]]
   from = "/api/*"
-  to = "https://ezf-api.onrender.com/api/:slug"
+  to = "https://ezf-api.onrender.com/api/"
   status = 200
 
 [[redirects]]
