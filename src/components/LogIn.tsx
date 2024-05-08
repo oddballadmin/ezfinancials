@@ -27,12 +27,13 @@ const LogIn = () => {
 						};
 						setUser(userData);
 						console.log("User data set in context:", userData);
-						setIsLoading(false);
 					} else {
 						console.error("User data is incomplete:", profileResponse.data);
 					}
 				} catch (error) {
 					console.error("Error fetching user data:", error);
+				} finally {
+					setIsLoading(false);
 				}
 			};
 			fetchUserData();
