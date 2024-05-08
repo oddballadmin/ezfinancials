@@ -47,6 +47,9 @@ app.use('/', authRouter);
 app.use('/', expenseRouter);
 app.use('/', incomeRouter);
 
+app.get('/api', (req, res) => {
+    res.send('Welcome to the Budget App API');
+});
 
 app.listen(PORT, () => {
 

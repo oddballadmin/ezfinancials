@@ -8,10 +8,11 @@ import { IncomeProvider } from "./context/IncomeContext";
 import { ExpenseProvider } from "./context/ExpenseContext";
 
 const App = () => {
-	if (import.meta.env.VITE_NODE_ENV === "development") {
+	if (import.meta.env.VITE_NODE_ENV == "development") {
 		axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
 	} else axios.defaults.baseURL = import.meta.env.VITE_PROD_API_BASE_URL;
 	axios.defaults.withCredentials = true;
+	console.log(axios.defaults.baseURL);
 	return (
 		<>
 			<div className="container">
