@@ -58,7 +58,7 @@ export const UserContextProvider = ({ children }: { children: ReactNode }) => {
 	};
 	useEffect(() => {
 		fetchUserData();
-	}, [setUser, user]);
+	}, [setUser]);
 	return (
 		<UserContext.Provider value={{ user, setUser }}>
 			{children}
