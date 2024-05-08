@@ -54,6 +54,7 @@ const LogIn = () => {
 			}
 		} catch (error) {
 			toast.error("Invalid Credentials");
+		} finally {
 			setIsLoggedIn(false); // Ensure logged in state is false on failure
 		}
 	};
