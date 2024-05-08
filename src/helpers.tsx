@@ -15,22 +15,22 @@ export const convertToUsd = (value: number) => {
 
 export const deleteIncomeItem = async (id: string) => {
 	try {
-		console.log(`/api/income/delete/${id}`);
-		await axios.delete(`/api/income/delete/${id}`, { withCredentials: true });
+		console.log(`/income/delete/${id}`);
+		await axios.delete(`/income/delete/${id}`, { withCredentials: true });
 	} catch (error) {
 		console.log(error);
 	}
 };
 export const deleteExpenseItem = async (id: string) => {
 	try {
-		await axios.delete(`/api/expenses/delete/${id}`, { withCredentials: true });
+		await axios.delete(`/expenses/delete/${id}`, { withCredentials: true });
 	} catch (error) {
 		console.log(error);
 	}
 };
 export const getIncome = async () => {
 	try {
-		const res = await axios.get("/api/income", { withCredentials: true });
+		const res = await axios.get("/income", { withCredentials: true });
 		return res.data;
 	} catch (error) {
 		console.log(error);
@@ -38,7 +38,7 @@ export const getIncome = async () => {
 };
 export const getExpense = async () => {
 	try {
-		const res = await axios.get("/api/expenses", { withCredentials: true });
+		const res = await axios.get("/expenses", { withCredentials: true });
 		return res.data;
 	} catch (error) {
 		console.log(error);
@@ -46,7 +46,7 @@ export const getExpense = async () => {
 };
 export const getSingleIncome = async (id: string) => {
 	try {
-		const res = await axios.get(`/api/income/${id}`, { withCredentials: true });
+		const res = await axios.get(`/income/${id}`, { withCredentials: true });
 		return res.data;
 	} catch (error) {
 		console.log(error);
@@ -54,7 +54,7 @@ export const getSingleIncome = async (id: string) => {
 };
 export const getSingleExpense = async (id: string) => {
 	try {
-		const res = await axios.get(`/api/expenses/${id}`, {
+		const res = await axios.get(`/expenses/${id}`, {
 			withCredentials: true,
 		});
 		return res.data;
@@ -69,7 +69,7 @@ export const addIncome = async ({ name, amount, category }: dataType) => {
 	const newEntry = JSON.stringify(data);
 	console.log(newEntry);
 	try {
-		const response = await axios.post("/api/income/add", data, {
+		const response = await axios.post("/income/add", data, {
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -87,7 +87,7 @@ export const addExpense = async ({ name, amount, category }: dataType) => {
 	const newEntry = JSON.stringify(data);
 	console.log(newEntry);
 	try {
-		const response = await axios.post("/api/expenses/add", data, {
+		const response = await axios.post("/expenses/add", data, {
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -105,7 +105,7 @@ export const updateExpense = async ({ name, amount, _id }: dataType) => {
 	const newEntry = JSON.stringify(data);
 	console.log(newEntry);
 	try {
-		const response = await axios.patch(`/api/expenses/update/${_id}`, data, {
+		const response = await axios.patch(`/expenses/update/${_id}`, data, {
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -122,7 +122,7 @@ export const updateIncome = async ({ name, amount, _id }: dataType) => {
 	const newEntry = JSON.stringify(data);
 	console.log(newEntry);
 	try {
-		const response = await axios.patch(`/api/income/update/${_id}`, data, {
+		const response = await axios.patch(`/income/update/${_id}`, data, {
 			headers: {
 				"Content-Type": "application/json",
 			},

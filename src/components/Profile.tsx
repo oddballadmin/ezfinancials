@@ -12,9 +12,7 @@ const Profile = () => {
 	return (
 		<div className="Profile">
 			<div className="ProfileGroup">
-				<h3>
-					<h3>{user ? user.name : "Guest"}</h3>
-				</h3>
+				<h3>{user ? user.name : "Guest"}</h3>
 				<button
 					onClick={() => {
 						if (isSignUpModalOpen) return null;
