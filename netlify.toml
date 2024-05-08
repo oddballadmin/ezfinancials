@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "/api/*"
+  from = "https://ezfinances.netlify.app/*"
   to = "https://ezf-api.onrender.com/:splat"
   status = 200
   force = true
