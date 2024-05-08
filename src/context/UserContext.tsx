@@ -39,7 +39,7 @@ export const UserContextProvider = ({ children }: { children: ReactNode }) => {
 	// };
 	const fetchUserData = async () => {
 		try {
-			const profileResponse = await axios.get("/profile", {
+			const profileResponse = await axios.get("/api/profile", {
 				withCredentials: true,
 			});
 			if (profileResponse.data && profileResponse.data._id) {
