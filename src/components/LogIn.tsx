@@ -11,6 +11,7 @@ const LogIn = () => {
 	});
 	const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
 	const { setUser } = useContext(UserContext);
+	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
 		if (isLoggedIn) {
@@ -41,6 +42,7 @@ const LogIn = () => {
 		e.preventDefault();
 		const { email, password } = data;
 		try {
+			setIsLoading(true);
 			const response = await axios.post("/login", { email, password });
 			const { data } = response; // Deconstruct data from the response
 			if (data.error) {
@@ -83,6 +85,7 @@ const LogIn = () => {
 				<div className="ButtonGroup">
 					<button type="reset">Reset</button>
 					<button type="submit">Login</button>
+					{isLoading && <div className="spinner"></div>}
 				</div>
 			</form>
 		</div>
