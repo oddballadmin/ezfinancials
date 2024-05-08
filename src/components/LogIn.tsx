@@ -16,7 +16,6 @@ const LogIn = () => {
 		if (isLoggedIn) {
 			const fetchUserData = async () => {
 				try {
-					setIsLoading(true);
 					const profileResponse = await axios.get("/profile", {
 						withCredentials: true,
 					});
@@ -32,8 +31,6 @@ const LogIn = () => {
 					}
 				} catch (error) {
 					console.error("Error fetching user data:", error);
-				} finally {
-					setIsLoading(false);
 				}
 			};
 			fetchUserData();
@@ -42,8 +39,11 @@ const LogIn = () => {
 
 	const logInUser = async (e: React.FormEvent) => {
 		e.preventDefault();
+
 		const { email, password } = data;
 		try {
+			setIsLoading(true);
+
 			const response = await axios.post("/login", { email, password });
 			const { data } = response; // Deconstruct data from the response
 			if (data.error) {
@@ -56,6 +56,8 @@ const LogIn = () => {
 		} catch (error) {
 			toast.error("Invalid Credentials");
 			setIsLoggedIn(false); // Ensure logged in state is false on failure
+		} finally {
+			setIsLoading(false);
 		}
 	};
 
