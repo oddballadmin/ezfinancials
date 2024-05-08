@@ -6,10 +6,12 @@ import { convertToUsd, getIncome } from "../helpers";
 import ModuleList from "./ModuleList";
 import ModuleListItemGroup from "./ModuleListItemGroup";
 import AddIncomeMenu from "./AddIncomeMenu";
+import { UserContext } from "../context/UserContext";
+
 const IncomeModule = () => {
 	const { income, setIncome } = useContext(IncomeContext);
 	const [incomeTotal, setIncomeTotal] = useState<number>(0);
-
+	const { user } = useContext(UserContext);
 	const fetchData = async () => {
 		try {
 			setIncome(await getIncome());
@@ -28,7 +30,7 @@ const IncomeModule = () => {
 	}, [context]);
 	useEffect(() => {
 		fetchData();
-	}, []);
+	}, [user?._id]);
 
 	useMemo(() => {
 		if (!income) return;

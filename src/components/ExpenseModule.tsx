@@ -6,10 +6,12 @@ import { convertToUsd, getExpense } from "../helpers";
 import ModuleList from "./ModuleList";
 import ModuleListItemGroup from "./ModuleListItemGroup";
 import AddExpenseMenu from "./AddExpenseMenu";
+import { UserContext } from "../context/UserContext";
 
-const IncomeModule = () => {
+const ExpenseModule = () => {
 	const { expense, setExpense } = useContext(ExpenseContext);
 	const [expenseTotal, setExpenseTotal] = useState<number>(0);
+	const { user } = useContext(UserContext);
 
 	const fetchData = async () => {
 		try {
@@ -30,7 +32,7 @@ const IncomeModule = () => {
 
 	useEffect(() => {
 		fetchData();
-	}, []);
+	}, [user?._id]);
 
 	useMemo(() => {
 		if (!expense) return;
@@ -57,4 +59,4 @@ const IncomeModule = () => {
 	);
 };
 
-export default IncomeModule;
+export default ExpenseModule;
