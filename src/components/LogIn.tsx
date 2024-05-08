@@ -3,7 +3,6 @@ import "../component-styles/LogIn.css";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { UserContext } from "../context/UserContext";
-
 const LogIn = () => {
 	const [data, setData] = useState({
 		email: "",
@@ -17,6 +16,7 @@ const LogIn = () => {
 		if (isLoggedIn) {
 			const fetchUserData = async () => {
 				try {
+					setIsLoading(true);
 					const profileResponse = await axios.get("/profile", {
 						withCredentials: true,
 					});
@@ -27,6 +27,7 @@ const LogIn = () => {
 						};
 						setUser(userData);
 						console.log("User data set in context:", userData);
+						setIsLoading(false);
 					} else {
 						console.error("User data is incomplete:", profileResponse.data);
 					}
@@ -42,7 +43,6 @@ const LogIn = () => {
 		e.preventDefault();
 		const { email, password } = data;
 		try {
-			setIsLoading(true);
 			const response = await axios.post("/login", { email, password });
 			const { data } = response; // Deconstruct data from the response
 			if (data.error) {
@@ -54,7 +54,6 @@ const LogIn = () => {
 			}
 		} catch (error) {
 			toast.error("Invalid Credentials");
-		} finally {
 			setIsLoggedIn(false); // Ensure logged in state is false on failure
 		}
 	};

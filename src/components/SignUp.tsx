@@ -12,13 +12,14 @@ const SignUp = () => {
 		password2: "",
 	});
 
-	const [isLoading, setIsLoading] = useState(false);
-
 	const registerUser = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		if (data.password !== data.password2) {
+			toast.error("Passwords do not match");
+			return;
+		}
 		const { name, email, password } = data;
 		try {
-			setIsLoading(true);
 			const { data } = await axios.post("/register", {
 				name,
 				email,
@@ -39,8 +40,6 @@ const SignUp = () => {
 			}
 		} catch (err) {
 			console.log(err);
-		} finally {
-			setIsLoading(false);
 		}
 	};
 	return (
@@ -101,7 +100,6 @@ const SignUp = () => {
 				<div className="ButtonGroup">
 					<button type="reset">Reset</button>
 					<button type="submit">Sign Up</button>
-					{isLoading && <div className="spinner"></div>}
 				</div>
 			</form>
 		</div>
