@@ -2,12 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import { addIncome, deleteIncome, getAllIncomes, getSingleIncome, updateIncome } from '../controllers/incomeController.js';
 import protect from '../middleware/authenticate.js';
-import { orginOptions } from '../middleware/orgin.js';
 const incomeRouter = express.Router();
 
 // Middleware to allow cross-origin requests(CORS)
 incomeRouter.use(cors({
-    origin: orginOptions,
+    origin: process.env.VITE_NODE_ENV == "development" ? "http://localhost:3000" : process.env.VITE_CLIENT_BASE_URL,
     credentials: true,
 
 }));

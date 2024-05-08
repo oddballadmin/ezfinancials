@@ -6,7 +6,6 @@ import authRouter from './routes/authRoutes.js';
 import expenseRouter from './routes/expenseRoutes.js';
 import incomeRouter from './routes/incomeRoutes.js';
 import cors from 'cors';
-import { orginOptions } from './middleware/orgin.js';
 
 
 const PORT = 8001;
@@ -29,7 +28,8 @@ app.use(express.urlencoded({ extended: false }));
 
 
 const corsOptions = {
-    origin: orginOptions,
+    origin: process.env.VITE_NODE_ENV == "development" ? "http://localhost:3000" : process.env.VITE_CLIENT_BASE_URL
+    ,
     credentials: true,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type,Authorization'
@@ -38,6 +38,7 @@ const corsOptions = {
 
     // This is important for cookies to be sent and received
 };
+console.log("corsOptions are: ", corsOptions);
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 

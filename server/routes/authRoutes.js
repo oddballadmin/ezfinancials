@@ -1,12 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import { registerUser, loginUser, getProfile, getUser } from '../controllers/authController.js';
-import { orginOptions } from '../middleware/orgin.js';
 const authRouter = express.Router();
 
 // Middleware to allow cross-origin requests(CORS)
 authRouter.use(cors({
-    origin: orginOptions,
+    origin: process.env.VITE_NODE_ENV == "development" ? "http://localhost:3000" : process.env.VITE_CLIENT_BASE_URL,
     credentials: true,
     // Secure in production
 
